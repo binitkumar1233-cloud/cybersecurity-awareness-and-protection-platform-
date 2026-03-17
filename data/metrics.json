@@ -1,0 +1,50 @@
+{
+  "users_daily": [
+    120,
+    150,
+    130,
+    170,
+    210,
+    190,
+    230
+  ],
+  "incidents_monthly": [
+    5,
+    7,
+    4,
+    9,
+    6,
+    8
+  ],
+  "phishing_daily": [
+    12,
+    9,
+    14,
+    11,
+    15,
+    10,
+    8
+  ],
+  "training_completion": [
+    65,
+    25,
+    10
+  ],
+  "labels_daily": [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun"
+  ],
+  "labels_months": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun"
+  ]
+}

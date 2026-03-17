@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SME Cybersecurity Quiz • Symantix</title>
+  <link rel="stylesheet" href="assets/css/symantix-gov-enhancements.css">
+  <style>
+    .quiz { max-width: 900px; margin: 0 auto; }
+    .q { background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:1rem; margin:.75rem 0; }
+    .q h3 { margin:.25rem 0 .5rem; }
+    .quiz-actions { display:flex; gap:.5rem; margin-top:1rem; }
+    .badge { display:inline-block; padding:.25rem .5rem; border-radius:999px; background:#eef2ff; }
+    .explain { color:#475569; margin-top:.5rem; }
+  </style>
+</head>
+<body>
+
+
+
+<nav class="symx-nav">
+  <div class="nav-left">
+    <a href="index.html" style="font-weight:600;color:var(--accent1);">Symantix</a>
+    <span id="admin-badge" class="admin-badge" style="display:none;">Admin</span>
+  </div>
+  <div class="nav-toggle">☰</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="learning_v2.html">Learning</a>
+    <a href="sme_quiz.html">Quiz</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="analytics.html" class="admin-only">Analytics</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <label class="theme-toggle" title="Toggle light/dark">
+    <input type="checkbox" id="theme-switch" />
+    <div class="pill"><div class="dot"></div></div>
+  </label>
+</nav>
+<script src="assets/js/main_v11.js" defer></script>
+<script src="assets/js/theme.js" defer></script>
+<script src="assets/js/admin.js" defer></script>
+<main class="symx-container">
+    <section class="symx-hero" style="--hero-bg:url('assets/img/hero.jpg') center/cover no-repeat;">
+      <h1>SME Cybersecurity Quiz</h1>
+      <p>10 quick questions to gauge your organization’s readiness. You’ll get instant scoring and explanations.</p>
+      <p style="margin-top:1rem;"><a class="symx-report-btn" href="https://cybercrime.gov.in" target="_blank" rel="noopener">Report Incident at cybercrime.gov.in</a></p>
+    </section>
+
+    
+    <section class="symx-section quiz" id="quiz">
+      <div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
+      <div id="qwrap" class="q" style="margin-top:1rem;"></div>
+      <div class="quiz-actions">
+        <button id="prev" class="symx-btn" disabled>Back</button>
+        <button id="next" class="symx-btn">Next</button>
+      </div>
+      <div id="score" class="badge"></div>
+    </section>
+                  
+  </main>
+  
+  
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const QUESTIONS = [
+    { q: "Which is the strongest password?", options: ["Summer2024!", "S@mpl3Pwd", "correct-horse-battery-staple-93", "John@123"], a: 2, ex:"Use long passphrases; unique per site." },
+    { q: "Best first response to a suspected phishing email?", options: ["Reply and ask for confirmation", "Click the link in a sandbox", "Report to IT/security and delete", "Forward to colleagues"], a: 2, ex:"Report to security; don’t engage or spread." },
+    { q: "Which backup strategy is most resilient?", options: ["Single external HDD", "Cloud only", "3-2-1: three copies, two media, one offsite", "USB pen drive"], a: 2, ex:"3-2-1 provides redundancy and offsite protection." },
+    { q: "MFA primarily protects against:", options: ["Phishing", "Credential stuffing", "Ransomware encryption", "DDoS"], a: 1, ex:"MFA reduces risk when passwords are leaked/reused." },
+    { q: "What should SMEs enforce for admin accounts?", options: ["Shared admin passwords", "No audits", "Least privilege & separate accounts", "Disable logging"], a: 2, ex:"Use least privilege; separate admin and user roles." },
+    { q: "A vendor handling customer data must:", options: ["Sign NDA only", "Have security controls & DPA", "Be the cheapest", "Use public Wi‑Fi"], a: 1, ex:"Assess vendor security and data processing agreements." },
+    { q: "Which email attachment is riskiest by default?", options: [".pdf", ".xlsx", ".zip with .exe inside", ".jpg"], a: 2, ex:"Compressed executables often evade filters." },
+    { q: "Detecting ransomware early is easiest with:", options: ["Random reboots", "EDR alerts & anomaly monitoring", "Turning off backups", "Disabling AV"], a: 1, ex:"EDR and monitoring help detect abnormal behaviors." },
+    { q: "Incident response playbooks should include:", options: ["Only PR steps", "Clear roles, contacts, actions, evidence handling", "Nothing, decide ad‑hoc", "Only legal notes"], a: 1, ex:"Playbooks define responsibilities and steps." },
+    { q: "For UPI/online payments, never:", options: ["Verify merchant details", "Share OTP/PIN", "Use official apps", "Check SMS alerts"], a: 1, ex:"Never share OTP/PIN. Ever." }
+  ];
+
+  let idx = 0;
+  let score = 0;
+  const qs = document.getElementById('quiz');
+  const qwrap = document.getElementById('qwrap');
+  const progressEl = document.getElementById('progress');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const scoreEl = document.getElementById('score');
+  const chosen = new Array(QUESTIONS.length).fill(null);
+
+  function render(){
+    const item = QUESTIONS[idx];
+    const percent = Math.round((idx) / QUESTIONS.length * 100);
+    progressEl.style.width = percent + '%';
+    qwrap.style.opacity = 0;
+    setTimeout(()=>{
+      qwrap.innerHTML = '<h3>Q'+(idx+1)+'/'+QUESTIONS.length+'. '+item.q+'</h3>' +
+        item.options.map((opt,i)=>'<label style="display:block;margin:.4rem 0;"><input type="radio" name="opt" value="'+i+'" '+(chosen[idx]===i?'checked':'')+'> '+opt+'</label>').join('');
+      qwrap.style.opacity = 1;
+    }, 100);
+    prevBtn.disabled = idx===0;
+    nextBtn.textContent = idx===QUESTIONS.length-1 ? 'Submit' : 'Next';
+  }
+
+  function finalize(){
+    score = 0;
+    QUESTIONS.forEach((it,i)=>{ if (chosen[i]===it.a) score++; });
+    qs.innerHTML = '<div class="symx-card"><h2>Your Result</h2><p style="font-size:1.1rem;">Score: <strong>'+score+'/'+QUESTIONS.length+'</strong></p>' +
+      '<p>' + (score>=8? '✅ Excellent — strong security awareness!' : (score>=5 ? '⚠️ Fair — focus on gaps and retake soon.' : '❌ Needs work — review modules and try again.')) + '</p>' +
+      '<p><a class="symx-btn" href="learning_v2.html">Review Learning Modules →</a></p></div>';
+  }
+
+  qs.addEventListener('change', (e)=>{
+    if (e.target && e.target.name==='opt'){
+      chosen[idx] = parseInt(e.target.value,10);
+    }
+  });
+  prevBtn.addEventListener('click', ()=>{ if (idx>0){ idx--; render(); } });
+  nextBtn.addEventListener('click', ()=>{
+    if (idx < QUESTIONS.length-1){ idx++; render(); } else { finalize(); }
+  });
+
+  render();
+});
+</script>
+
+</body>
+</html>

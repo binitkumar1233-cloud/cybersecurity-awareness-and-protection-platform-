@@ -1,0 +1,314 @@
+
+/* Symantix v7 Enhancements (non-intrusive, gov-portal tone) */
+:root {
+  --symx-accent: #0b5ed7; /* keep neutral blue accent */
+  --symx-muted: #6c757d;
+  --symx-surface: #f8f9fa;
+}
+
+.symx-container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+.symx-hero {
+  background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.65)), var(--hero-bg, #333);
+  color: #fff; padding: 4rem 1rem; text-align: center; border-radius: 16px;
+}
+.symx-hero h1{ font-size: clamp(1.8rem, 3vw, 3rem); margin: 0 0 .5rem;}
+.symx-hero p{ max-width: 900px; margin: 0.5rem auto 1rem; line-height: 1.6; }
+
+.symx-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+.symx-card { background: white; border-radius: 14px; padding: 1rem; border: 1px solid #e9ecef; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+.symx-card h3{ margin:.25rem 0 .5rem; }
+.symx-card p{ color: var(--symx-muted); }
+
+.symx-section { padding: 2rem 1rem; background: var(--symx-surface); margin: 1rem 0; border-radius: 16px; }
+.symx-section h2{ margin-top: 0; }
+
+/* Footer */
+footer.symx-footer { background: #0f172a; color: #e5e7eb; margin-top: 2rem; padding: 2.5rem 1rem 1rem; }
+footer.symx-footer a { color: #93c5fd; text-decoration: none; }
+footer.symx-footer a:hover { text-decoration: underline; }
+.symx-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+.symx-footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); margin-top: 1rem; padding-top: 1rem; font-size: .9rem; color: #cbd5e1; }
+
+/* Contact form */
+.symx-form { display: grid; gap: .75rem; max-width: 720px; }
+.symx-input, .symx-textarea {
+  width: 100%; padding: .75rem 1rem; border-radius: 10px; border: 1px solid #dfe3e7; outline: none;
+}
+.symx-input:focus, .symx-textarea:focus { border-color: var(--symx-accent); box-shadow: 0 0 0 3px rgba(11,94,215,.12); }
+.symx-btn {
+  background: var(--symx-accent); color: #fff; padding: .75rem 1.1rem; border: 0; border-radius: 10px; cursor: pointer;
+}
+.symx-btn:hover { filter: brightness(1.05); }
+
+/* --- Symantix v8 Responsive Enhancements --- */
+.symx-container { width: 100%; max-width: 1280px; padding: 1rem; margin: 0 auto; box-sizing: border-box; }
+
+.symx-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 50vh;
+  background-position: center;
+  background-size: cover;
+  border-radius: 16px;
+}
+
+.symx-cards {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.symx-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.25s ease;
+}
+
+.symx-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 1024px) {
+  .symx-hero { padding: 3rem 1rem; }
+  .symx-card h3 { font-size: 1.1rem; }
+}
+
+@media (max-width: 768px) {
+  .symx-container { padding: 0.75rem; }
+  .symx-hero h1 { font-size: 1.6rem; }
+  .symx-hero p { font-size: 1rem; }
+  .symx-cards { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+}
+
+@media (max-width: 480px) {
+  .symx-hero { padding: 2rem 1rem; }
+  .symx-card { padding: 1rem; }
+  footer.symx-footer { text-align: center; }
+  .symx-footer-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Symantix v9 Quick Links Colors + Accessibility --- */
+.quick-links .symx-card {
+  color: #ffffff;
+  border: none;
+}
+.quick-links .symx-card a { color: #ffffff; text-decoration: underline; }
+
+/* Fallback coloring via nth-child so we don't need to add classes */
+.quick-links .symx-card:nth-child(1) { background: linear-gradient(135deg, #1d4ed8, #2563eb); } /* blue */
+.quick-links .symx-card:nth-child(2) { background: linear-gradient(135deg, #059669, #10b981); } /* green */
+.quick-links .symx-card:nth-child(3) { background: linear-gradient(135deg, #ea580c, #f59e0b); } /* orange */
+.quick-links .symx-card:nth-child(4) { background: linear-gradient(135deg, #7c3aed, #8b5cf6); } /* purple */
+.quick-links .symx-card:nth-child(5) { background: linear-gradient(135deg, #0ea5e9, #22d3ee); } /* cyan */
+
+.quick-links .symx-card:hover { filter: brightness(1.05); transform: translateY(-4px); }
+
+/* Button style for Report Incident */
+.symx-report-btn {
+  display: inline-block;
+  padding: .8rem 1.1rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: #fff !important;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
+}
+.symx-report-btn:hover { filter: brightness(1.06); }
+
+/* --- Symantix v10 Dark Glass Theme --- */
+:root{
+  --bg-deep:#0f172a;
+  --text-main: rgba(255,255,255,0.92);
+  --text-dim: rgba(255,255,255,0.72);
+  --glow: #3b82f6;
+}
+body{ background: var(--bg-deep); color: var(--text-main); }
+.symx-section, .symx-card{ background: rgba(255,255,255,0.04) !important; color: var(--text-main) !important; border: 1px solid rgba(255,255,255,0.08) !important; }
+.symx-card a{ color:#93c5fd; }
+.symx-hero{ background: linear-gradient(180deg, rgba(9,12,20,.6), rgba(9,12,20,.7)), var(--hero-bg, #111) !important; }
+footer.symx-footer{ background: rgba(2,6,23,.8) !important; }
+
+/* Glass quick links */
+.quick-links .symx-card{
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06) inset;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.quick-links .symx-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(147,197,253,0.3) inset;
+}
+.quick-links .symx-card h3{ display:flex; align-items:center; gap:.5rem; }
+.quick-links .symx-icon{
+  width: 22px; height:22px; display:inline-block;
+  filter: drop-shadow(0 0 8px rgba(59,130,246,.55));
+}
+
+/* Progress bar for quiz */
+.progress-wrap{ width:100%; background: rgba(255,255,255,0.08); border-radius:999px; overflow:hidden; height:10px; }
+.progress-bar{ height:100%; width:0%; background: linear-gradient(90deg, #3b82f6, #22d3ee); transition: width .3s ease; }
+
+/* Timeline styles */
+.timeline{
+  position: relative;
+  margin: 1rem auto;
+  max-width: 900px;
+}
+.timeline::before{
+  content:""; position:absolute; left:20px; top:0; bottom:0; width:2px;
+  background: linear-gradient(#22d3ee,#3b82f6);
+  box-shadow: 0 0 12px rgba(59,130,246,.5);
+}
+.step{
+  position:relative; margin-left:60px; margin-bottom:1.25rem;
+  background: rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px; padding:1rem;
+}
+.step::before{
+  content:""; position:absolute; left:-42px; top:18px; width:16px; height:16px; border-radius:50%;
+  background: #3b82f6; box-shadow: 0 0 0 4px rgba(59,130,246,.25);
+}
+.step h3{ margin:.25rem 0 .35rem; }
+.step p{ color: var(--text-dim); }
+
+/* --- Symantix v11 Floating Navbar + Interactive Timeline --- */
+nav.symx-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  z-index: 999;
+  padding: 0 1.5rem;
+}
+nav.symx-nav a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  margin: 0 0.75rem;
+  font-weight: 500;
+  transition: color .2s ease;
+}
+nav.symx-nav a:hover { color: #93c5fd; }
+nav.symx-nav a.active {
+  color: #3b82f6;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 2px;
+}
+
+/* Responsive menu */
+.nav-toggle { display: none; cursor: pointer; }
+@media (max-width: 768px) {
+  .nav-links { display: none; flex-direction: column; position: absolute; top:60px; right:0; background: rgba(15,23,42,0.9); width: 220px; }
+  .nav-links.open { display:flex; }
+  .nav-toggle { display: block; color: #fff; }
+}
+
+/* Adjust spacing for hero under fixed nav */
+.symx-hero { margin-top: 60px !important; }
+
+/* Interactive timeline */
+.timeline { position: relative; margin: 2rem auto; max-width: 900px; }
+.timeline::before {
+  content:""; position:absolute; left:20px; top:0; bottom:0; width:3px;
+  background: linear-gradient(180deg, #3b82f6, #22d3ee);
+  border-radius:3px;
+  animation: glowLine 3s infinite alternate;
+}
+@keyframes glowLine { from{opacity:.6;} to{opacity:1;} }
+.step {
+  position:relative; margin-left:60px; margin-bottom:1.5rem;
+  background: rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px; padding:1rem;
+  transition: all .3s ease;
+}
+.step:hover { transform: scale(1.02); border-color: rgba(147,197,253,.3); }
+.step::before {
+  content:""; position:absolute; left:-42px; top:18px; width:16px; height:16px; border-radius:50%;
+  background: #3b82f6; box-shadow: 0 0 0 4px rgba(59,130,246,.25);
+}
+.step h3 { display:flex; align-items:center; gap:.5rem; margin:.25rem 0; cursor:pointer; }
+.step p { display:none; color:rgba(255,255,255,0.75); margin-top:.5rem; }
+.step.open p { display:block; }
+@media (max-width:600px){
+  .timeline::before{left:10px;}
+  .step{margin-left:40px;}
+}
+
+
+/* --- Symantix v13 Theme System + Transitions --- */
+:root {
+  --bg: #0f172a;
+  --surface: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+  --text: rgba(255,255,255,0.92);
+  --text-dim: rgba(255,255,255,0.75);
+  --accent1: #3b82f6;
+  --accent2: #22d3ee;
+}
+:root.light {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --text: #0b132b;
+  --text-dim: #3c4a69;
+  --accent1: #0b5ed7;
+  --accent2: #36c1ee;
+}
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color .25s ease, color .25s ease;
+}
+.symx-section, .symx-card {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease, box-shadow .25s ease;
+}
+footer.symx-footer { background: rgba(2,6,23,.8); }
+:root.light footer.symx-footer { background:#0b132b; }
+a { transition: color .2s ease, opacity .2s ease; }
+
+/* Theme toggle button */
+.theme-toggle {
+  display:flex; align-items:center; gap:.4rem; cursor:pointer;
+  color: var(--text);
+  user-select:none;
+}
+.theme-toggle input { display:none; }
+.theme-toggle .pill {
+  width:52px; height:28px; border-radius:999px; position:relative;
+  background: var(--surface); border:1px solid var(--border);
+}
+.theme-toggle .dot {
+  width:22px; height:22px; border-radius:50%;
+  background: var(--accent1); position:absolute; top:3px; left:3px;
+  transition: left .2s ease, background .2s ease, transform .2s ease;
+  box-shadow: 0 0 12px rgba(59,130,246,.45);
+}
+.theme-toggle input:checked + .pill .dot {
+  left:27px; background: var(--accent2); transform: rotate(180deg);
+}
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+
+/* v14: admin-only link hidden by default */
+.admin-only{display:none;} .admin-badge{margin-left:.5rem;padding:.15rem .5rem;border-radius:999px;background:rgba(34,211,238,.15);color:var(--text);font-size:.8rem;}

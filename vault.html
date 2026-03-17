@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang='en'><head>
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>Vault · Symantix</title><link rel='manifest' href='manifest.webmanifest'><link rel='icon' href='assets/icons/icon-192.png' sizes='192x192'><link rel='apple-touch-icon' href='assets/icons/icon-192.png'><link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Orbitron:wght@600;800&display=swap' rel='stylesheet'><link rel='stylesheet' href='css/global.css'><link rel='stylesheet' href='css/vault.css'>
+<link rel="stylesheet" href="assets/css/symantix-gov-enhancements.css">
+</head><body>
+
+
+
+<nav class="symx-nav">
+  <div class="nav-left">
+    <a href="index.html" style="font-weight:600;color:var(--accent1);">Symantix</a>
+    <span id="admin-badge" class="admin-badge" style="display:none;">Admin</span>
+  </div>
+  <div class="nav-toggle">☰</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="learning_v2.html">Learning</a>
+    <a href="sme_quiz.html">Quiz</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="analytics.html" class="admin-only">Analytics</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <label class="theme-toggle" title="Toggle light/dark">
+    <input type="checkbox" id="theme-switch" />
+    <div class="pill"><div class="dot"></div></div>
+  </label>
+</nav>
+<script src="assets/js/main_v11.js" defer></script>
+<script src="assets/js/theme.js" defer></script>
+<script src="assets/js/admin.js" defer></script>
+<div id='splash'><div class='splash-inner'><img src='assets/icons/icon-192.png' class='splash-logo' alt='Symantix'><div class='splash-ring'></div></div></div><div class='app'><aside class='sidebar'><div class='brand'><img src='assets/icons/icon-192.png' alt='Symantix'><span>Symantix</span></div><nav class='nav'><div class='label'>Overview</div><a href='index.html'>Dashboard</a><a href='identity.html'>Identity</a><a href='vault.html' class="active">Vault</a><a href='network.html'>Network</a><a href='learning.html'>Learning</a><a href='copilot.html'>AI Copilot</a><div class='label'>Insights</div><a href='timeline.html'>Timeline</a><a href='compliance.html'>Compliance</a><a href='reports.html'>Reports</a><a href='graph.html'>Network Graph</a><a href='settings.html'>Settings</a></nav></aside><div class='main'><div class='topbar'><div class='topbar-left'><input class='search' placeholder='Search modules, users, events…'><button class='btn'>Status: Secure</button></div><div class='topbar-right'><select id='theme' class='btn' title='Theme'><option value='default'>Dark Neon</option><option value='midnight'>Pure Black</option><option value='onyx'>Dim Navy</option></select><button class='btn primary' onclick="location.href='reports.html'">Export</button></div></div><main class='content'>
+<div class="grid cols-2">
+  <div class="card">
+    <h2 style="margin:0 0 10px">Add Credential</h2>
+    <div class="grid">
+      <input class="btn" style="text-align:left" placeholder="Label" id="label">
+      <input class="btn" style="text-align:left" placeholder="Username / Email" id="uname">
+      <div style="display:grid; grid-template-columns:1fr auto; gap:8px">
+        <input class="btn blur" style="text-align:left" placeholder="Password" id="pwd" type="password">
+        <button class="btn" id="eye">👁️</button>
+      </div>
+      <button class="btn primary" id="save">Save</button>
+    </div>
+  </div>
+  <div class="card">
+    <h2 style="margin:0 0 10px">Vault Items</h2>
+    <div id="vaultList" style="display:grid; gap:10px"></div>
+  </div>
+</div>
+</main><footer class='footer'><div>© 2025 Symantix — Cyber Intelligence for SMEs</div><div>Privacy · Terms · Security</div></footer></div></div><script>window.addEventListener('load', function(){ var el = document.getElementById('splash'); if(el){ setTimeout(function(){ el.classList.add('hidden'); }, 400); } });</script><script src='js/main.js'></script><script src='js/vault.js'></script>
+<footer class="symx-footer" role="contentinfo" aria-label="Site footer">
+  <div class="symx-container symx-footer-grid">
+    <div>
+      <h3>Symantix</h3>
+      <p>Your cybersecurity awareness and protection hub. Our mission is to empower citizens and organizations to stay safe online.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Use</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Helplines</h4>
+      <ul>
+        <li>Cyber Crime Helpline: <strong>1930</strong></li>
+        <li><a href="https://cybercrime.gov.in" target="_blank" rel="noopener">Report at National Cyber Crime Portal</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="symx-container symx-footer-bottom">
+    <span>© 2025 Symantix. All rights reserved.</span>
+    <span style="float:right">Developed for cyber awareness.</span>
+  </div>
+</footer>
+
+</body></html>

@@ -1,0 +1,1 @@
+.timeline{display:grid; gap:12px}.event{display:grid; grid-template-columns:26px 1fr; gap:10px}.dot{width:12px;height:12px;border-radius:50%}.ok{background:#10B981}.warn{background:#F59E0B}.bad{background:#EF4444}.line{width:2px;background:rgba(255,255,255,.14);margin:0 12px}

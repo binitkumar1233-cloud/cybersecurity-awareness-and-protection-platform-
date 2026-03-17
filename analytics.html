@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analytics • Symantix</title>
+  <link rel="stylesheet" href="assets/css/symantix-gov-enhancements.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  
+<nav class="symx-nav">
+  <div class="nav-left">
+    <a href="index.html" style="font-weight:600;color:var(--accent1);">Symantix</a>
+    <span id="admin-badge" class="admin-badge" style="display:none;">Admin</span>
+  </div>
+  <div class="nav-toggle">☰</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="learning_v2.html">Learning</a>
+    <a href="sme_quiz.html">Quiz</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="analytics.html" class="admin-only">Analytics</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <label class="theme-toggle" title="Toggle light/dark">
+    <input type="checkbox" id="theme-switch" />
+    <div class="pill"><div class="dot"></div></div>
+  </label>
+</nav>
+<script src="assets/js/main_v11.js" defer></script>
+<script src="assets/js/theme.js" defer></script>
+<script src="assets/js/admin.js" defer></script>
+<main class="symx-container">
+    <section class="symx-hero" style="--hero-bg:url('assets/img/hero.jpg') center/cover no-repeat;">
+      <h1>Analytics Dashboard</h1>
+      <p>High-level overview of awareness, incidents, and engagement.</p>
+    </section>
+
+    <section class="symx-section">
+      <div class="symx-cards">
+        <div class="symx-card"><h3>Active Users Today</h3><canvas id="usersChart"></canvas></div>
+        <div class="symx-card"><h3>Reported Incidents</h3><canvas id="incidentsChart"></canvas></div>
+        <div class="symx-card"><h3>Phishing Attempts Detected</h3><canvas id="phishChart"></canvas></div>
+        <div class="symx-card"><h3>Training Completion</h3><canvas id="trainChart"></canvas></div>
+      </div>
+    </section>
+  </main>
+
+  
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const def = {
+    users_daily:[120,150,130,170,210,190,230],
+    incidents_monthly:[5,7,4,9,6,8],
+    phishing_daily:[12,9,14,11,15,10,8],
+    training_completion:[65,25,10],
+    labels_daily:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    labels_months:['Jan','Feb','Mar','Apr','May','Jun']
+  };
+  let data = def;
+  try {
+    const res = await fetch('assets/data/metrics.json', {cache:'no-store'});
+    if (res.ok) data = await res.json();
+  } catch(e){ /* fallback to defaults */ }
+
+  const ctx1 = document.getElementById('usersChart');
+  const ctx2 = document.getElementById('incidentsChart');
+  const ctx3 = document.getElementById('phishChart');
+  const ctx4 = document.getElementById('trainChart');
+  if (!window.Chart) return;
+
+  new Chart(ctx1, { type: 'line', data: {
+    labels: data.labels_daily, datasets: [{ label: 'Users', data: data.users_daily }]
+  }});
+
+  new Chart(ctx2, { type: 'bar', data: {
+    labels: data.labels_months, datasets: [{ label: 'Incidents', data: data.incidents_monthly }]
+  }});
+
+  new Chart(ctx3, { type: 'line', data: {
+    labels: data.labels_daily, datasets: [{ label: 'Phishing', data: data.phishing_daily }]
+  }});
+
+  new Chart(ctx4, { type: 'doughnut', data: {
+    labels: ['Completed','In Progress','Not Started'], datasets: [{ data: data.training_completion }]
+  }});
+});
+</script>
+                  
+</body>
+</html>
